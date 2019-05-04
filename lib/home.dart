@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nuevoproyecto/common/HttpHandler.dart';
+import 'package:nuevoproyecto/casos_list.dart';
+
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => new _HomeState();
  }
 class _HomeState extends State<Home> {
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _loadJson();
-  }
-
-  _loadJson() async{
-    String data = await HttpHandler().fetchCasos();
-    print(data);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +41,13 @@ class _HomeState extends State<Home> {
        )
      ),
 
+  body: new PageView(
+    children: <Widget>[
+      new CasosList()
+    ],
+  ),
      bottomNavigationBar: new BottomNavigationBar(
+        
        items: _getFooterItems(),
      ),
    );
@@ -59,6 +55,7 @@ class _HomeState extends State<Home> {
   List<BottomNavigationBarItem>  _getFooterItems(){
       return [
         new BottomNavigationBarItem(
+        
           icon: new Icon(Icons.thumb_down),
           title: new Text("Realizar Denuncia")
         ),
