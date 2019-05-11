@@ -11,6 +11,7 @@ class CasosListItem extends StatelessWidget {
     leading: new CircleAvatar(child: new Text(casos.caso_id.toString())), 
     title: new Text("CASO: "+casos.usuario_id.toString()),
     subtitle: new Text(casos.descripcion.toString()),
+    
   );
  }
 }

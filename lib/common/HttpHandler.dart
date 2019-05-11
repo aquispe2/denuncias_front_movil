@@ -12,12 +12,6 @@ class HttpHandler {
 
   Future<List<Casos>> fetchCasos(){
     var uri =  new Uri.http(_baseUrl,"api/casos/listarTodos");
-
-    /*return getJson(uri).then(((data)=>data.toString()
-    ));*/
-
-//[{caso_id: 1, descripcion: holaaaaaaaaaaaaaaa, usuario_id: 1029}, {caso_id: 2, descripcion: holaaaaaaaaaaaaaaa, usuario_id: 1029}]
-
     return getJson(uri).then(((data)=>
       data.map<Casos>((item)=>new Casos(item)).toList()
     ));
