@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:nuevoproyecto/model/Casos.dart';
 class HttpHandler {
-  final String _baseUrl = "172.16.30.51:1550";
+  //final String _baseUrl = "172.16.30.51:1550";
+  final String _baseUrl = "192.168.0.14:1550";
 
   Future<dynamic> getJson(Uri uri) async {
     http.Response response = await http.get(uri);
