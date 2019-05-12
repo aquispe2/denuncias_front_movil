@@ -3,11 +3,11 @@ import 'package:nuevoproyecto/common/HttpHandler.dart';
 import 'package:nuevoproyecto/model/Casos.dart';
 import 'package:nuevoproyecto/caso_list_item.dart';
 
-class CasosList extends StatefulWidget {
+class Denuncias extends StatefulWidget {
   @override
-  _CasosListState createState() => new _CasosListState();
+  _DenunciasState createState() => new _DenunciasState();
  }
-class _CasosListState extends State<CasosList> {
+class _DenunciasState extends State<Denuncias> {
 
 List<Casos> _casos = new List();
 

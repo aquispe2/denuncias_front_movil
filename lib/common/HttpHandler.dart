@@ -10,15 +10,17 @@ class HttpHandler {
     http.Response response = await http.get(uri);
     return json.decode(response.body);
   }
+  Future<dynamic> createCaso(String url, {Map body}) async{
+    return http.post(url,body: body).then((http.Response response){
+        final int statusCode = response.statusCode;
+        if(statusCode<200 || statusCode > 400 || json==null){
+          throw new Exception("Error en la creacion de Caso");
+        }
+    });
+  }
 
   Future<List<Casos>> fetchCasos(){
     var uri =  new Uri.http(_baseUrl,"api/casos/listarTodos");
-
-    /*return getJson(uri).then(((data)=>data.toString()
-    ));*/
-
-//[{caso_id: 1, descripcion: holaaaaaaaaaaaaaaa, usuario_id: 1029}, {caso_id: 2, descripcion: holaaaaaaaaaaaaaaa, usuario_id: 1029}]
-
     return getJson(uri).then(((data)=>
       data.map<Casos>((item)=>new Casos(item)).toList()
     ));
