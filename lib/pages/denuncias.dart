@@ -17,14 +17,14 @@ List<Casos> _casos = new List();
     super.initState();
     loadCasos();
   }
+  
+
 
   void loadCasos() async{
-    
     var casos = await HttpHandler().fetchCasos();
-    
-    //print(casos.toString());
     setState(() {
       _casos.addAll(casos);
+      
     });
     
   }

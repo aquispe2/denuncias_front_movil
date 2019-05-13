@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevoproyecto/model/PostCasos.dart';
 import 'package:nuevoproyecto/common/HttpHandler.dart';
 
 void main() => runApp(new MaterialApp(
@@ -18,7 +19,7 @@ class _LoginData {
 
 class _FormDenuncias extends State<FormDenuncias> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-
+TextEditingController descripcionEdit = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -31,13 +32,20 @@ class _FormDenuncias extends State<FormDenuncias> {
             key: this._formKey,
             child: new ListView(
               children: <Widget>[
-                new TextFormField(
+                new TextField(
+                  controller: descripcionEdit,
+                  decoration: InputDecoration(
+                      hintText: "Describa la Denuncia"),
+                ),
+                /*new TextFormField(
+                  
+                  controller: descripcionEdit,
                     keyboardType: TextInputType.emailAddress, // Use email input type for emails.
                     decoration: new InputDecoration(
                         hintText: 'Describa la Denuncia',
                         labelText: 'Denuncia'
                     )
-                ),
+                ),*/
 
                 new Container(
                   width: screenSize.width,
@@ -48,8 +56,9 @@ class _FormDenuncias extends State<FormDenuncias> {
                           color: Colors.white
                       ),
                     ),
-                    onPressed: () {
-                      //await HttpHandler().fetchCasos();
+                    onPressed: () async {
+                      PostCasos newPostCasos = new PostCasos( descripcion:descripcionEdit.text, usuario_id:10, estado_id:10);
+                      await HttpHandler().createCaso(body: newPostCasos.toMap());
                     },
                     color: Colors.green,
                   ),
