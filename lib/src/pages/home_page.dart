@@ -7,15 +7,19 @@ class HomePage extends StatelessWidget {
    final bloc = Provider.of(context);
   return  Scaffold(
     appBar: AppBar(
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text('Email: ${bloc.email}'),
-          Text('Password : ${bloc.password}'),
-        ],
-      )
+      title: Text('Denuncias')
     ),
+    body: Container(),
+    floatingActionButton: _crearBoton(context),
   
  );
+ }
+ _crearBoton( BuildContext context){
+   return FloatingActionButton(
+      child:Icon(Icons.add),
+      backgroundColor: Colors.deepPurple,
+      onPressed:()=>Navigator.pushNamed(context, 'denuncias')
+   );
+   
  }
 }
