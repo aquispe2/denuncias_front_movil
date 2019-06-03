@@ -7,7 +7,7 @@ import 'package:nuevoproyecto/src/models/casos_model.dart';
 import 'package:http/http.dart' as http;
 
 class CasosProviders {
-  final String _url = '192.168.0.12:2018';
+  final String _url = '172.16.30.51:2018';
 
  Future<dynamic> getJson(Uri uri) async {
     http.Response response = await http.get(uri);
@@ -34,7 +34,7 @@ Future<List<CasosModel>> cargarCasos(){
   }
 
   Future<String> subirImagen (File img) async{
-    final url = Uri.parse('https://api.cloudinary.com/v1_1/aquispe/image/upload');
+    final url = Uri.parse('https://api.cloudinary.com/v1_1/aquispe/image/upload?upload_preset=supochmq');
     final mimeType = mime(img.path).split('/');
     final imgUpload = http.MultipartRequest(
       'POST',
@@ -55,6 +55,7 @@ Future<List<CasosModel>> cargarCasos(){
     }
 
     final respData = json.decode(resp.body);
+    print("Subiendo Imagen");
     print(respData);
     return respData['secure_url'];
 

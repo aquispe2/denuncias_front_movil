@@ -8,8 +8,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-   
     final bloc = Provider.of(context);
 
     return Scaffold(
@@ -38,13 +36,34 @@ class HomePage extends StatelessWidget {
 
   Widget _crearItem(CasosModel caso) {
     return Dismissible(
-      key:UniqueKey(),
-      background: Container(color: Colors.red,),
-          child: ListTile(
-        title: Text('${caso.descripcion} - ${caso.casoId}'),
-        subtitle: Text('sdsdsd'),
+      key: UniqueKey(),
+      background: Container(
+        color: Colors.red,
       ),
+      child: Card(
+        child: Column(
+          children: <Widget>[
+            (caso.fotoUrl==null)?
+            Image(image: AssetImage('assets/no-image.png')):
+            FadeInImage(
+              image: NetworkImage(caso.fotoUrl),
+              placeholder: AssetImage('assets/jar-loading.gif'),
+              height: 300.0,
+              width: double.infinity,
+              fit: BoxFit.cover
+            ),
+            ListTile(
+              title: Text('DESCRIPCIÓN - DENUNCIA'),
+        subtitle: Text('${caso.descripcion} - ${caso.casoId}'),
+        
+    )
+          ],
+        )
+      )
     );
+
+
+
   }
 
   _crearBoton(BuildContext context) {
