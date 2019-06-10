@@ -10,6 +10,10 @@ class CasosModel {
     int usuarioId;
     int estadoId;
     String fotoUrl;
+    String direccion;
+    String respuestaCaso;
+
+
 
     CasosModel({
         this.casoId,
@@ -17,6 +21,8 @@ class CasosModel {
         this.usuarioId=0,
         this.estadoId=0,
         this.fotoUrl='',
+        this.direccion='',
+        this.respuestaCaso=''
     });
 
     factory CasosModel.fromJson(Map<String, dynamic> json) => new CasosModel(
@@ -25,6 +31,8 @@ class CasosModel {
         usuarioId: json["usuario_id"],
         estadoId: json["estado_id"],
         fotoUrl: json["fotoUrl"],
+        direccion: json["direccion"],
+        respuestaCaso: json["respuesta_caso"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -33,5 +41,7 @@ class CasosModel {
         "usuario_id": usuarioId,
         "estado_id": estadoId,
         "fotoUrl": fotoUrl,
+        "direccion": direccion,
+        "respuesta_caso": respuestaCaso,
     };
 }

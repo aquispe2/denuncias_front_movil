@@ -50,6 +50,7 @@ class _DenunciasPageState extends State<DenunciasPage> {
               children: <Widget>[
                 _mostrarFoto(),
                 _crearDenuncia(),
+                _crearDireccion(),
                 _crearBoton()
               ],
             ),
@@ -71,11 +72,22 @@ class _DenunciasPageState extends State<DenunciasPage> {
         } else {
           return null;
         }
-        /*if(utils.isDenuncia(value)){
-         return null;
-       }else {
-         return 'Ingrese Descripcion arriba de 3 caracters';
-       }*/
+      },
+    );
+  }
+
+  Widget _crearDireccion() {
+    return TextFormField(
+      initialValue: objCasos.direccion,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(labelText: 'Registre Direccion'),
+      onSaved: (value) => objCasos.direccion = value,
+      validator: (value) {
+        if (value.length < 3) {
+          return "Ingrese Direccion";
+        } else {
+          return null;
+        }
       },
     );
   }

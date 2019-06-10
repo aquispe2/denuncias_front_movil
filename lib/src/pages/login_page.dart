@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:nuevoproyecto/src/bloc/provider.dart';
+import 'dart:async';
 
-class LoginPage extends StatelessWidget {
+
+import 'package:geolocator/geolocator.dart';
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,11 +135,17 @@ class LoginPage extends StatelessWidget {
         });
   }
 
-  _login(LoginBloc bloc,BuildContext context) {
+  _login(LoginBloc bloc,BuildContext context)  {
+
+    /*Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(position == null ? 'No hay Position' : position.latitude.toString() + ', ' + position.longitude.toString());*/
+
+
     print('====================');
     print('Email ${ bloc.email}');
     print('Pasword ${ bloc.password }');
     Navigator.pushReplacementNamed(context, 'home');
+  
   }
 
   Widget _crearFondo(BuildContext context) {
