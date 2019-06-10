@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuevoproyecto/src/bloc/provider.dart';
+import 'package:nuevoproyecto/src/models/usuario_model.dart';
+import 'package:nuevoproyecto/src/providers/usuario_provider.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -47,11 +49,13 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 20.0),
                 _crearPassword(bloc),
                 SizedBox(height: 20.0),
-                _crearBoton(bloc)
+                _crearBoton(bloc),
+                SizedBox(height: 20.0),
+                _crearNuevoUsuario()
               ],
             ),
           ),
-          Text('Olvido su Contraseña?'),
+          
           SizedBox(
             height: 10.0,
           )
@@ -107,6 +111,27 @@ class LoginPage extends StatelessWidget {
     );
   }
 
+Widget _crearNuevoUsuario() {
+    return StreamBuilder(
+        
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          return RaisedButton(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+              child: Text('Registrarse'),
+            ),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)),
+            elevation: 0.0,
+            color: Colors.greenAccent,
+            textColor: Colors.white,
+            onPressed:  () => _ingresarNuevo(context) ,
+          );
+        });
+  }
+  _ingresarNuevo(BuildContext context){
+     Navigator.pushReplacementNamed(context, 'usuario_nuevo');
+  }
   Widget _crearBoton(LoginBloc bloc) {
     return StreamBuilder(
         stream: bloc.formValidStream,
@@ -126,11 +151,21 @@ class LoginPage extends StatelessWidget {
         });
   }
 
-  _login(LoginBloc bloc,BuildContext context) {
-    print('====================');
-    print('Email ${ bloc.email}');
-    print('Pasword ${ bloc.password }');
-    Navigator.pushReplacementNamed(context, 'home');
+  _login(LoginBloc bloc,BuildContext context) async {
+
+     UsuarioProvider usuarioProvider = new UsuarioProvider();
+     UsuarioModel objUsuario = new UsuarioModel();
+     print("nuevoo");
+     objUsuario.mail = bloc.emailStream.toString();
+     objUsuario.ci = bloc.passwordStream.toString();
+      print("salida");
+
+
+     bool puedeIngresar = await usuarioProvider.verificarUsuario(objUsuario);
+     if(puedeIngresar){
+       Navigator.pushReplacementNamed(context, 'home');
+     }
+    
   }
 
   Widget _crearFondo(BuildContext context) {
