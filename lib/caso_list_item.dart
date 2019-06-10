@@ -9,7 +9,7 @@ class CasosListItem extends StatelessWidget {
  Widget build(BuildContext context) {
   return new ListTile(
     leading: new CircleAvatar(child: new Text(casos.caso_id.toString())), 
-    title: new Text("CASO: "+casos.usuario_id.toString()),
+    title: new Text("CASOggggg: "+casos.usuario_id.toString()),
     subtitle: new Text(casos.descripcion.toString()),
     
   );

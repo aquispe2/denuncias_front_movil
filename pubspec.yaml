@@ -31,10 +31,12 @@ dependencies:
   http: 
   image_picker:
   mime_type:
+  geolocator:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-    
+
 
 
 # For information on the generic Dart part of this file, see the

@@ -36,34 +36,40 @@ class HomePage extends StatelessWidget {
 
   Widget _crearItem(CasosModel caso) {
     return Dismissible(
-      key: UniqueKey(),
-      background: Container(
-        color: Colors.red,
-      ),
-      child: Card(
-        child: Column(
+        key: UniqueKey(),
+        background: Container(
+          color: Colors.red,
+        ),
+        child: Card(
+          elevation: 4.6,
+            child: Column(
           children: <Widget>[
-            (caso.fotoUrl==null)?
-            Image(image: AssetImage('assets/no-image.png')):
-            FadeInImage(
-              image: NetworkImage(caso.fotoUrl),
-              placeholder: AssetImage('assets/jar-loading.gif'),
-              height: 300.0,
-              width: double.infinity,
-              fit: BoxFit.cover
-            ),
+           
+            (caso.fotoUrl == null)
+                ? Image(image: AssetImage('assets/no-image.png'))
+                : FadeInImage(
+                    image: NetworkImage(caso.fotoUrl),
+                    placeholder: AssetImage('assets/jar-loading.gif'),
+                    height: 300.0,
+                    width: double.infinity,
+                    fit: BoxFit.cover),
             ListTile(
               title: Text('DESCRIPCIÓN - DENUNCIA'),
-        subtitle: Text('${caso.descripcion} - ${caso.casoId}'),
-        
-    )
+              subtitle: Text('${caso.descripcion} '),
+            ),
+
+           
+           
+                ListTile(
+                  title: Text('RESPUESTA CASO'),
+                  subtitle: Text('${caso.respuestaCaso} '),
+                ),
+                 Chip(
+              backgroundColor: (caso.estadoId==1000)? Colors.green:Colors.red,
+              label: Text('${caso.estadoId}'),
+            ),
           ],
-        )
-      )
-    );
-
-
-
+        )));
   }
 
   _crearBoton(BuildContext context) {

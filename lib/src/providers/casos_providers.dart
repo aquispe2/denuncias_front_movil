@@ -7,7 +7,7 @@ import 'package:nuevoproyecto/src/models/casos_model.dart';
 import 'package:http/http.dart' as http;
 
 class CasosProviders {
-  final String _url = '172.16.30.51:2018';
+  final String _url = '192.168.0.12:2018';
 
  Future<dynamic> getJson(Uri uri) async {
     http.Response response = await http.get(uri);
@@ -24,7 +24,7 @@ Future<List<CasosModel>> cargarCasos(){
   }
 
   Future<bool> crearCasos(CasosModel casos) async {
-    var url = new Uri.http(_url, "api/casos/add");
+    var url = new Uri.http(_url, "api/casos/InsertOrUpdate");
     final resp = await http.post(url,
         body: casosModelToJson(casos),
         headers: {"Content-Type": "application/json"});

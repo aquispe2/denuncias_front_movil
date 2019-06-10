@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:nuevoproyecto/src/bloc/provider.dart';
+<<<<<<< HEAD
 import 'package:nuevoproyecto/src/models/usuario_model.dart';
 import 'package:nuevoproyecto/src/providers/usuario_provider.dart';
+=======
+import 'dart:async';
+>>>>>>> c90713fa88aea54a371da25a6257724e00d6ab38
 
-class LoginPage extends StatelessWidget {
+
+import 'package:geolocator/geolocator.dart';
+
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
