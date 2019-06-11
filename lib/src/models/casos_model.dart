@@ -12,6 +12,8 @@ class CasosModel {
     String fotoUrl;
     String direccion;
     String respuestaCaso;
+    String latitud;
+    String longitud;
 
 
 
@@ -22,7 +24,9 @@ class CasosModel {
         this.estadoId=0,
         this.fotoUrl='',
         this.direccion='',
-        this.respuestaCaso=''
+        this.respuestaCaso='',
+        this.latitud='',
+        this.longitud=''
     });
 
     factory CasosModel.fromJson(Map<String, dynamic> json) => new CasosModel(
@@ -32,7 +36,9 @@ class CasosModel {
         estadoId: json["estado_id"],
         fotoUrl: json["fotoUrl"],
         direccion: json["direccion"],
-        respuestaCaso: json["respuesta_caso"]
+        respuestaCaso: json["respuesta_caso"],
+        latitud: json["latitud"],
+        longitud: json["longitud"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -43,5 +49,7 @@ class CasosModel {
         "fotoUrl": fotoUrl,
         "direccion": direccion,
         "respuesta_caso": respuestaCaso,
+        "latitud":latitud,
+        "longitud":longitud
     };
 }
