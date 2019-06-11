@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuevoproyecto/src/bloc/provider.dart';
-<<<<<<< HEAD
 import 'package:nuevoproyecto/src/models/usuario_model.dart';
 import 'package:nuevoproyecto/src/providers/usuario_provider.dart';
-=======
-import 'dart:async';
->>>>>>> c90713fa88aea54a371da25a6257724e00d6ab38
 
 
 import 'package:geolocator/geolocator.dart';
@@ -113,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                   Icons.lock_outline,
                   color: Colors.deepPurple,
                 ),
-                labelText: 'Contraseña',
+                labelText: 'Carnet Indetidad',
                 counterText: snapshot.data,
                 errorText: snapshot.error),
             onChanged: bloc.changePassword,
@@ -165,11 +161,14 @@ Widget _crearNuevoUsuario() {
 
   _login(LoginBloc bloc,BuildContext context) async {
 
+    /*Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    print(position == null ? 'Unknown' : position.latitude.toString() + ', ' + position.longitude.toString());*/
+
      UsuarioProvider usuarioProvider = new UsuarioProvider();
      UsuarioModel objUsuario = new UsuarioModel();
      print("nuevoo");
-     objUsuario.mail = bloc.emailStream.toString();
-     objUsuario.ci = bloc.passwordStream.toString();
+     objUsuario.mail =  bloc.email;
+     objUsuario.ci = bloc.password;
       print("salida");
 
 
