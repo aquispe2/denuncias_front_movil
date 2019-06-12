@@ -27,10 +27,13 @@ class _DenunciasPageState extends State<UsuarioNuevoPage> {
 
     return new Scaffold(
       key: scaffoldkey,
-      appBar: AppBar(
-        title: Text('Registrar Usuario'),
-       
+       appBar: AppBar(
+        title: Text('Denuncias'),
+        actions: <Widget>[
+          
+        ],
       ),
+      
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(15.0),

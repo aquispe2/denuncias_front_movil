@@ -12,9 +12,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key:scaffoldkey,
         body: Stack(
       children: <Widget>[
         _crearFondo(context),
@@ -123,7 +126,8 @@ Widget _crearNuevoUsuario() {
     return StreamBuilder(
         
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return RaisedButton(
+          return  FlatButton(onPressed:  () => _ingresarNuevo(context), child: new Text('Registrarse'));
+          /*return RaisedButton(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
               child: Text('Registrarse'),
@@ -134,11 +138,12 @@ Widget _crearNuevoUsuario() {
             color: Colors.greenAccent,
             textColor: Colors.white,
             onPressed:  () => _ingresarNuevo(context) ,
-          );
+          );*/
+
         });
   }
   _ingresarNuevo(BuildContext context){
-     Navigator.pushReplacementNamed(context, 'usuario_nuevo');
+     Navigator.pushNamed(context, 'usuario_nuevo');
   }
   Widget _crearBoton(LoginBloc bloc) {
     return StreamBuilder(
@@ -175,6 +180,8 @@ Widget _crearNuevoUsuario() {
      bool puedeIngresar = await usuarioProvider.verificarUsuario(objUsuario);
      if(puedeIngresar){
        Navigator.pushReplacementNamed(context, 'home');
+     }else{
+       mostrarSnackbar('Usuario Incorrecto');
      }
     
   }
@@ -225,4 +232,15 @@ Widget _crearNuevoUsuario() {
       ],
     );
   }
+
+   void mostrarSnackbar(String mensaje) {
+     
+    final snackbar = SnackBar(
+      content: Text(mensaje),
+      duration: Duration(milliseconds: 1500),
+      backgroundColor: Colors.red,
+    );
+    scaffoldkey.currentState.showSnackBar(snackbar);
+  }
+
 }

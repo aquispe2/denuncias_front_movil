@@ -8,8 +8,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       appBar: AppBar(title: Text('Denuncias')),
       body: _crearListadoCasos(),
@@ -41,33 +39,23 @@ class HomePage extends StatelessWidget {
           color: Colors.red,
         ),
         child: Card(
-          elevation: 4.6,
             child: Column(
           children: <Widget>[
-           
             (caso.fotoUrl == null)
-                ? Image(image: AssetImage('assets/no-image.png'))
+                ? Image(image: AssetImage('assets/no-image.png'),height: 200.0,width: double.infinity)
                 : FadeInImage(
                     image: NetworkImage(caso.fotoUrl),
                     placeholder: AssetImage('assets/jar-loading.gif'),
-                    height: 300.0,
+                    height: 200.0,
                     width: double.infinity,
                     fit: BoxFit.cover),
-            ListTile(
-              title: Text('DESCRIPCIÓN - DENUNCIA'),
-              subtitle: Text('${caso.descripcion} '),
-            ),
-
-           
-           
-                ListTile(
-                  title: Text('RESPUESTA CASO'),
-                  subtitle: Text('${caso.respuestaCaso} '),
-                ),
-                 Chip(
-              backgroundColor: (caso.estadoId==1000)? Colors.green:Colors.red,
-              label: Text('${caso.estadoId}'),
-            ),
+                  ListTile(
+                    leading: Icon(Icons.album),
+                    title: Text('DESCRIPCIÓN - DENUNCIA'),
+                    subtitle: Text('${caso.descripcion} '),
+                  ),
+                  new FlatButton(onPressed: (){}, child: new Text((caso.respuestaCaso!=null)?'ATENDIDO':'ENVIADO'),textColor: Colors.redAccent,)
+                
           ],
         )));
   }
