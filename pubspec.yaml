@@ -31,7 +31,7 @@ dependencies:
   http: 
   image_picker:
   mime_type:
-  geolocator:
+  geolocator: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:nuevoproyecto/src/bloc/provider.dart';
 import 'package:nuevoproyecto/src/models/usuario_model.dart';
 import 'package:nuevoproyecto/src/providers/usuario_provider.dart';
-
-
 import 'package:geolocator/geolocator.dart';
+
+
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,6 +13,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -143,6 +144,7 @@ Widget _crearNuevoUsuario() {
         });
   }
   _ingresarNuevo(BuildContext context){
+    
      Navigator.pushNamed(context, 'usuario_nuevo');
   }
   Widget _crearBoton(LoginBloc bloc) {
@@ -165,9 +167,10 @@ Widget _crearNuevoUsuario() {
   }
 
   _login(LoginBloc bloc,BuildContext context) async {
+    
+    GeolocationStatus geolocationStatus  = await Geolocator().checkGeolocationPermissionStatus();
 
-    /*Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    print(position == null ? 'Unknown' : position.latitude.toString() + ', ' + position.longitude.toString());*/
+  
 
      UsuarioProvider usuarioProvider = new UsuarioProvider();
      UsuarioModel objUsuario = new UsuarioModel();

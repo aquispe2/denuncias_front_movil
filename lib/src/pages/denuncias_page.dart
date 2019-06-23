@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevoproyecto/src/models/casos_model.dart';
 import 'package:nuevoproyecto/src/providers/casos_providers.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:geolocator/geolocator.dart';
 
 class DenunciasPage extends StatefulWidget {
   @override
@@ -104,6 +105,16 @@ class _DenunciasPageState extends State<DenunciasPage> {
   }
 
   void _submit() async {
+
+    
+    Position _position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    if(_position!=null){
+      objCasos.latitud = _position.latitude.toString();
+      objCasos.longitud =  _position.longitude.toString();
+    }
+    print(_position == null ? 'Unknown' : _position.latitude.toString() + ', ' + _position.longitude.toString());
+   
+
     if (!formKey.currentState.validate()) {
       return;
     }

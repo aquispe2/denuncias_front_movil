@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:nuevoproyecto/src/models/usuario_model.dart';
 
 class UsuarioProvider {
-  final String _url = '172.16.30.51:2018';
+  final String _url = '192.168.0.17:2018';
 
 
 
